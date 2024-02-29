@@ -6,6 +6,7 @@ products:
 - azure-resource-manager
 urlFragment: anf-oracle-storage
 languages:
+- bicep
 - json
 ---
 # ORACLE Azure NetApp Files storage
@@ -19,11 +20,13 @@ languages:
 ![Best Practice Check](https://azurequickstartsservice.blob.core.windows.net/badges/quickstarts/microsoft.netapp/anf-oracle/anf-oracle-storage/BestPracticeResult.svg)
 ![Cred Scan Check](https://azurequickstartsservice.blob.core.windows.net/badges/quickstarts/microsoft.netapp/anf-oracle/anf-oracle-storage/CredScanResult.svg)
 
+![Bicep Version](https://azurequickstartsservice.blob.core.windows.net/badges/quickstarts/microsoft.netapp/anf-oracle/anf-oracle-storage/BicepVersion.svg)
+
 [![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.netapp%2Fanf-oracle%2Fanf-oracle-storage%2Fazuredeploy.json)
 
 [![Visualize](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg?sanitize=true)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.netapp%2Fanf-oracle%2Fanf-oracle-storage%2Fazuredeploy.json)
 
-This document covers the scenario of deploying storage for ORACLE deployments using a ORACLE storage template. Storage is provided using Azure NetApp Files, built on NetApp ONTAP storage OS.
+This document covers the scenario of deploying storage for ORACLE deployments using an ORACLE storage template. Storage is provided using Azure NetApp Files, built on NetApp ONTAP storage OS.
 
 [Azure NetApp Files application volume group for ORACLE is currently in preview](https://docs.microsoft.com/azure/azure-netapp-files/application-volume-group-introduction).
 You need to submit a waitlist request for accessing the feature through the [Azure NetApp Files application volume group for ORACLE waitlist submission page](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR2Qj2eZL0mZPv1iKUrDGvc9UQzBDRUREOTc4MDdWREZaRzhOQzZGNTdFQiQlQCN0PWcu).
@@ -71,7 +74,7 @@ AvSet pinning is required for long-term SAP HANA systems. Microsoft capacity pla
 Before you can create volumes using the application volume group, you must anchor the PPG. This means you must create at least one VM using the pinned AvSet. After this VM is started, the PPG can be used to detect where the VM is running (anchored).
    * Create and start the VM using the AvSet.
 
-After the above preparation, you can use the application volume group template to create volumes. Steps #3, #4 and #5 are not required if AvailabilityZone option selected. 
+After the above preparation, you can use the application volume group template to create volumes. Steps #3, #4 and #5 are not required if AvailabilityZone option selected.
 
 ## Automated prerequisite template
 
@@ -123,7 +126,7 @@ Following input attributes are used to generate volume name. Volume name and mou
 * SID
 * Prefix
 
-|**Attributes**                                                            | **Naming convention**                                                                                                                                                                                                                                                                            | 
+|**Attributes**                                                            | **Naming convention**                                                                                                                                                                                                                                                                            |
 |--------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <ul><li>SID</li><li>SID</li><li>SID</li><li>SID</li><li>SID</li><li>SID</li><li>SID</li><li>SID</li><li>SID</li><li>SID</li><li>SID</li><li>SID</li></ul> | <ul><li>Data1 volume: &lt;SID&gt;-ora-data1</li><li>Data2 volume: &lt;SID&gt;-ora-data2</li><li>Data3 volume: &lt;SID&gt;-ora-data3</li><li>Data4 volume: &lt;SID&gt;-ora-data4</li><li>Data5 volume: &lt;SID&gt;-ora-data5</li><li>Data6 volume: &lt;SID&gt;-ora-data6</li><li>Data7 volume: &lt;SID&gt;-ora-data7</li><li>Data8 volume: &lt;SID&gt;-ora-data8</li><li>Log volume:&lt;SID&gt;-ora-log</li><li>Log Mirror volume:&lt;SID&gt;-ora-log-mirror</li><li>Binary volume:&lt;SID&gt;-ora-binary</li><li>Backup volume:&lt;SID&gt;-ora-backup</li></ul>                                                             |
 
@@ -146,7 +149,7 @@ Following attributes plays role in deciding volume size and throughput, if selec
 ### Throughput (MiB/s)
 | **Volume Type**   | **Value**                               |
 |-------------------|---------------------------------------- |
-| Data (1 -8)       | OracleThroughput/NoOfOracleDataVolumes  |                                                                                                                                         
+| Data (1 -8)       | OracleThroughput/NoOfOracleDataVolumes  |
 | Log               | 150                                     |
 | Log Miror         | 150                                     |
 | Binary            | 64                                      |

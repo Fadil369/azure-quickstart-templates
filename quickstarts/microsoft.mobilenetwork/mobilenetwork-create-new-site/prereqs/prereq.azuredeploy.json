@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.19.5.34762",
-      "templateHash": "108990573230051056"
+      "version": "0.23.1.45101",
+      "templateHash": "14890579000760491406"
     }
   },
   "parameters": {
@@ -63,7 +63,7 @@
     },
     {
       "type": "Microsoft.MobileNetwork/mobileNetworks",
-      "apiVersion": "2023-06-01",
+      "apiVersion": "2023-09-01",
       "name": "[parameters('mobileNetworkName')]",
       "location": "[parameters('location')]",
       "properties": {
@@ -75,7 +75,7 @@
     },
     {
       "type": "Microsoft.MobileNetwork/mobileNetworks/dataNetworks",
-      "apiVersion": "2023-06-01",
+      "apiVersion": "2023-09-01",
       "name": "[format('{0}/{1}', parameters('mobileNetworkName'), parameters('dataNetworkName'))]",
       "location": "[parameters('location')]",
       "properties": {},
